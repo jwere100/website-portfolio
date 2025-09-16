@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joshua Were</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Left Navigation */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #d43754;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            letter-spacing: 1px;
+        }
+
+        .social-icons {
+        display: flex;
+        gap: 15px;
+        }
+
+        .social-icon img {
+        width: 24px;   /* set icon width */
+        height: 24px;  /* force consistent height */
+        object-fit: contain;
+        transition: transform 0.2s ease;
+        }
+
+        .social-icon img:hover {
+        transform: scale(1.2);
+        }
+
+        /* Center Name */
+        .header-name {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #d43754;
+            letter-spacing: 1px;
+        }
+
+        /* Right Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: transparent;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .social-icon:hover {
+            background: #333;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            padding: 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Main Content Container */
+        .main-container {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: stretch;
+        }
+
+        /* Photo Section */
+        .photo-section {
+            flex: 1;
+            min-height: calc(100vh - 80px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.02);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.2rem;
+            position: relative;
+            border: 2px dashed #ccc;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Biography Section */
+        .biography-section {
+            flex: 1;
+            padding: 3rem;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .biography-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #d43754, #d43754);
+        }
+
+        .bio-header {
+            margin-bottom: 2rem;
+        }
+
+        .bio-title {
+            font-size: 3rem;
+            font-weight: 300;
+            color: #d43754;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .bio-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .bio-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .bio-content p {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .bio-content p:first-child::before {
+            content: '"';
+            font-size: 4rem;
+            color: #d43754;
+            position: absolute;
+            left: -2rem;
+            top: -1rem;
+            opacity: 0.3;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%, transparent 100%);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        /* Videos Section */
+        .videos-section {
+            padding: 4rem 2rem;
+            background: #000;
+            color: white;
+        }
+
+        .video-frame iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        object-fit: cover;
+        }
+
+        .videos-section h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            text-align: center;
+            letter-spacing: -1px;
+            color: white;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-item {
+            background: transparent;
+            border-radius: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .video-item:hover {
+            transform: scale(1.02);
+        }
+
+        .video-frame {
+            width: 100%;
+            height: 300px;
+            background: #222;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1rem;
+            position: relative;
+            border-radius: 8px;
+        }
+
+        .video-placeholder::before {
+            content: 'Click to add video';
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        .video-info {
+            padding: 1rem 0;
+        }
+
+        .video-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .video-description {
+            color: #ccc;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #333;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .header-name {
+                position: static;
+                transform: none;
+                font-size: 1.4rem;
+            }
+
+            .social-icons {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .main-container {
+                flex-direction: column;
+            }
+
+            .photo-section {
+                min-height: 50vh;
+                flex: none;
+            }
+
+            .biography-section {
+                padding: 2rem 1.5rem;
+                flex: none;
+            }
+
+            .bio-title {
+                font-size: 2.5rem;
+            }
+
+            .bio-content {
+                font-size: 1rem;
+            }
+
+            .bio-content p:first-child::before {
+                display: none;
+            }
+
+            .videos-section {
+                padding: 3rem 1rem;
+            }
+
+            .videos-section h2 {
+                font-size: 2rem;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-frame {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bio-title {
+                font-size: 2rem;
+            }
+
+            .biography-section {
+                padding: 1.5rem 1rem;
+            }
+
+            .videos-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .video-frame {
+                height: 200px;
+            }
+        }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .mobile-menu .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-menu .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-links">
+            <a href="https://savingcreativelives.com" class="logo" target="_blank">scl©</a>
+            <a href="#about">About</a>
+            <a href="#work">Visuals</a>
+        </div>
+        
+        <div class="header-name">Joshua Were</div>
+        
+        <div class="social-icons">
+             <a href="https://www.linkedin.com/in/joshua-were-500abb294/" class="social-icon" title="LinkedIn">
+                <img src="/assets/Linkedin.png" alt="LinkedIn">
+            </a>
+            <a href="#" class="social-icon" title="Instagram">
+                <img src="/assets/Instagram.png" alt="Instagram">
+            </a>
+            <a href="mailto:joshuawerescholar@gmail.com" class="social-icon" title="Gmail">
+                <img src="/assets/Gmail.png" alt="Gmail">
+            </a>
+            <a href="https://www.youtube.com/@JoshuaWere-cy4it" class="social-icon" title="YouTube">
+                <img src="/assets/Youtube.png" alt="YouTube">
+    </a>
+        </div>
+        
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="nav-links">
+            <a href="https://savingcreativelives.com" class="logo" target="_blank">scl©</a>
+            <a href="#about">About</a>
+            <a href="#work">Visuals</a>
+            <!---<a href="#contact">Contact</a>-->
+        </div>
+        <div class="social-icons">
+             <a href="https://www.linkedin.com/in/joshua-were-500abb294/" class="social-icon" title="LinkedIn">
+                <img src="/assets/linkedin.png" alt="LinkedIn">
+            </a>
+            <a href="#" class="social-icon" title="Instagram">
+                <img src="/assets/instagram.png" alt="Instagram">
+            </a>
+            <a href="mailto:joshuawerescholar@gmail.com" class="social-icon" title="Gmail">
+                <img src="/assets/gmail.png" alt="Gmail">
+            </a>
+            <a href="https://www.youtube.com/@JoshuaWere-cy4it" class="social-icon" title="YouTube">
+                <img src="/assets/youtube.png" alt="YouTube">
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="main-container" id="about">
+        <!-- Photo Section -->
+        <section class="photo-section">
+            <div class="photo-placeholder">
+                <div style="text-align: center;">
+                    
+                    <div style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 1;">
+                        <img src="/assets/profphoto.JPG" alt="Joshua Were" class="profile-photo" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Biography Section -->
+        <section class="biography-section">
+            <div class="bio-header">
+                <h1 class="bio-title">About Joshua</h1>
+                <p class="bio-subtitle"></p>
+            </div>
+            
+            <div class="bio-content">
+                <p><span class="highlight">Joshua Were</span> is a Mathematics/Computer Science student at Columbia University closely affiliated with the notion of creativity, technology, and sustainability.
+                With a strong passion of creativity, Joshua has developed a unique perspective that blends technical expertise with artistic vision. His approach is collaborative, always seeking to understand the story that needs to be told and finding the most impactful way to bring it to life.</p>
+                <p>Technically, Joshua is involves himself with sustainable research at Columbia University and NASA, areas where he nourishes the understanding of improving the conditions of people around the world. Joshua is currently exploring how computational modeling and machine learning can be used to better understand and predict climate-driven challenges such as wildfires, flooding, and extreme weather.
+                 </p>
+                <p>Creatively, Joshua's work spans across <span class="highlight">video & music production, computational media, 3D design, digital content creation, </span> and many more, all with a focus on innovation and authenticity. 
+                He believes that great work comes from the intersection of creativity, technical skill, and genuine human connection, and truly believes that a world where people merge their "creative ambitions while solving others will create a space where we can all do what we love while achieving the greatest impact."
+                Joshua has been creating things all his life, but truly fell in love during the pandemic, where he learned how to develop games on the Roblox Platform.
+                Nowadays, He works on larger projects. Through his work in Saving Creative Lives, Joshua was able to impact over 200 students in a low-income area, exposing them to programming, music prouction, photographjy, 3D Modeling, STEM and more.</p>
+                
+                <p>When not working on projects, Joshua is constantly exploring new techniques and technologies that can enhance storytelling. His mission is to create work that not only meets client needs but also pushes the boundaries of what's possible.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Videos Section -->
+    <section class="videos-section" id="work">
+        <h2>Watch Joshua</h2>
+        <div class="videos-grid">
+            <div class="video-item">
+                <div class="video-frame">
+                     <iframe 
+                        src="https://www.youtube.com/embed/mujVcgbXaqA?start=71" 
+                        frameborder="0"
+                        allowfullscreen>
+                        </iframe>
+                    <div class="video-placeholder"></div>
+                </div>
+                
+            </div>
+            
+            <div class="video-item">
+                <div class="video-frame">
+                    <iframe 
+                        src="https://www.youtube.com/embed/RUIFemkwYLU"
+                        frameborder="0"
+                        allowfullscreen>
+                        </iframe>
+                    <div class="video-placeholder"></div>
+                </div>
+                
+            </div>
+            
+            <div class="video-item">
+                <div class="video-frame">
+                    <div class="video-placeholder"></div>
+                </div>
+                
+            </div>
+            
+            <div class="video-item">
+                <div class="video-frame">
+                    <div class="video-placeholder"></div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <p>&copy; 2025 Joshua Were. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        let menuOpen = false;
+        function toggleMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            menuOpen = !menuOpen;
+            hamburger.classList.toggle('active', menuOpen);
+            mobileMenu.style.display = menuOpen ? 'block' : 'none';
+            
+            if (menuOpen) {
+                setTimeout(() => {
+                    mobileMenu.classList.add('active');
+                }, 10);
+            } else {
+                mobileMenu.classList.remove('active');
+                setTimeout(() => {
+                    mobileMenu.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (menuOpen && !hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                toggleMenu();
+            }
+        });
+
+        // Video upload handler
+        function handleVideoUpload(videoId) {
+            alert(`Video slot ${videoId} - You can embed YouTube videos, upload files, or add video links here.`);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    if (menuOpen) {
+                        toggleMenu();
+                    }
+                }
+            });
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe video items for scroll animations
+        document.querySelectorAll('.video-item').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observer.observe(item);
+        });
+
+        // Loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
