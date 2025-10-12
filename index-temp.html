@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joshua Were</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 4rem;
+            background-color: transparent;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            animation: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.9rem;
+            font-weight: 900;
+            transition: opacity 0.3s;
+            /*text-transform: lowercase;*/
+            letter-spacing: -1px;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .content {
+            margin-top: 100px;
+            padding: 4rem;
+            min-height: 100vh;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes bounce {
+          0%   { transform: translateY(0); }
+          30%  { transform: translateY(-2px); }
+          50%  { transform: translateY(0); }
+          70%  { transform: translateY(-2px); }
+          100% { transform: translateY(0); }
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-text h1 {
+            font-size: 8rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            line-height: 0.9;
+            letter-spacing: -3px;
+        }
+
+        .hero-text p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 600px;
+            font-weight: 400;
+        }
+
+        .contact-links {
+            margin-top: 3rem;
+        }
+
+        .contact-links a {
+            display: block;
+            color: #ffffff;
+            text-decoration: underline;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            transition: opacity 0.3s;
+        }
+
+        .contact-links a:hover {
+            opacity: 0.7;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            max-width: 800px;
+            width: 100%;
+            filter: grayscale(10%) contrast(1.2);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .gallery-item .placeholder-box {
+            width: 100%;
+            height: 200px; /* same as original placeholder */
+            overflow: hidden; 
+        }
+
+        .gallery-item .placeholder-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* fills the box without stretching */
+            display: block;
+        }
+
+        .gallery-item {
+            background-color: #1a1a1a;
+            padding: 0;
+            transition: transform 0.3s;
+        }
+        
+
+        .gallery-item:hover {
+            transform: none;
+        }
+
+        .gallery-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            font-weight: 900;
+        }
+
+        .gallery-item p {
+            font-size: 1.1rem;
+            color: #cccccc;
+            padding: 0 1.5rem 1.5rem 1.5rem;
+        }
+
+        .placeholder-box {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        .music-list {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .track-item {
+            margin-bottom: 4rem;
+        }
+        /* Music Placeholder */
+        .placeholder-box-music {
+            width: 100%;
+            max-width: 800px; /* limits how big the image gets */
+            height: auto;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .placeholder-box-music img {
+            width: 100%;
+            height: auto;
+            object-fit: contain; /* keeps aspect ratio without stretching */
+            display: block;
+        }
+
+        .track-cover {
+            width: 100%;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+
+        .track-cover .placeholder-box {
+            height: 400px;
+        }
+
+        audio {
+            width: 100%;
+            height: 50px;
+            background: transparent;
+            outline: none;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background-color: #ffffff;
+        }
+
+        audio:focus {
+            outline: none;
+        }
+
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 5rem;
+            }
+
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+
+                /* Hamburger icon */
+        .hamburger {
+            display: none;
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        /* Close button in mobile menu */
+        .close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 3rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* Mobile nav hidden by default */
+        @media (max-width: 968px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 100%;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                background-color: rgba(0,0,0,0.95);
+                z-index: 2000;
+                animation: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+            .nav-links.active .close-btn {
+                display: block;
+            }
+        }
+
+        /* Reduce spacing between Joshua and Were */
+        .logo {
+            letter-spacing: -1px;
+        }
+
+        /*EXTRA ABOUT ME*?*/
+        .more-text {
+            display: none;
+            margin-top: 1rem;
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #cccccc;
+        }
+
+        .read-more-btn {
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            background: #1a1a1a;
+            border: 2px solid #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        
+
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo" onclick="showPage('home')" style="cursor: pointer;">Joshua Were</div>
+        <div class="hamburger" onclick="toggleMobileMenu()">
+            &#9776; <!-- hamburger icon -->
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#" onclick="showPage('3d')">3D</a></li>
+            <li><a href="#" onclick="showPage('music')">Sound</a></li>
+            <li><a href="https://www.linkedin.com/in/joshua-were-500abb294/" class="icon-link">
+                Linkedin
+            </a></li>
+            <li><a href="mailto:joshuawerescholar@email.com" class="icon-link" onclick="event.stopPropagation()">
+            Mail</a></li>
+
+            <!--mobile-->
+            <li class="close-btn" onclick="toggleMobileMenu()">&#10005;</li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <div class="hero-text">
+                    <h1>About me</h1>
+                    <p>Hey, I'm Josh. I'm a Computer Science student at Columbia University. I'm passionate about technology, creativity, and exploring new ideas.
+                        Whether its music, photography, 3D modeling, taking photos I love to involve myself in anything creative.
+                        Nowadays, I've picked up coding, where I can combine my love for logic and creativity.
+                        I'm always looking to learn new things and improve my skills. 
+
+                    </p>
+                    <div class="about-more">
+                        <button class="read-more-btn" onclick="toggleAbout()">I'll add more here soon</button>
+                        <div id="more-text" class="more-text">
+                            <p>
+                                Here's my extended monologue: I love exploring abandoned buildings and capturing their forgotten beauty. Photography allows me to reflect on time, decay, and memory. Beyond photography, I enjoy 3D modeling, creating in Roblox Studio, and experimenting with sound and music. Every project I make is an exploration of curiosity, creativity, and pushing boundaries. I aim to inspire others to find passion in the small, overlooked corners of life and express themselves through art and technology.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-links">
+                        <a href="mailto:email@email.com">jo*****@gmail.com (just click the nav)</a>
+                        <a href="#">question everything</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="assets/GRIFFITH.JPEG" alt="ME">
+                </div>
+            </div>
+            <!---
+            <div class="gallery" style="margin-top: 4rem;">
+                <div class="gallery-item">
+                    <div class="placeholder-box">Image 1</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="placeholder-box">Image 2</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="placeholder-box">Image 3</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="placeholder-box">Image 4</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="placeholder-box">Image 5</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="placeholder-box">Image 6</div>
+                </div> */
+            </div>-->
+        </div>
+
+
+        <!-- Music Page -->
+        <div id="music" class="page">
+            <div class="hero-text">
+                <h1>stuff i've made</h1>
+            </div>
+            <div class="music-list">
+                <div class="track-item">
+                    <div class="track-cover">
+                        <div class="placeholder-box-music">
+                        <img src="assets/projectlogic.png" alt="song project cover">
+                        </div>
+                    </div>
+                    <audio controls>
+                        <source src="assets/_fallinginlove_.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <!--
+                <div class="track-item">
+                    <div class="track-cover">
+                        <div class="placeholder-box">SOON</div>
+                    </div>
+                    <audio controls>
+                        <source src="track2.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                
+                <div class="track-item">
+                    <div class="track-cover">
+                        <div class="placeholder-box">SOON</div>
+                    </div>
+                    <audio controls>
+                        <source src="track3.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="track-item">
+                    <div class="track-cover">
+                        <div class="placeholder-box">Track Cover 4</div>
+                    </div>
+                    <audio controls>
+                        <source src="track4.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                -->
+            </div>
+        </div>
+
+        <!-- 3D/Roblox Page -->
+        <div id="3d" class="page">
+            <div class="hero-text">
+                <h1>i build sometimes</h1>
+                <p>stuff i've made in roblox studio and blender.</p>
+            </div>
+            <div class="gallery">
+                
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d1.jpeg" alt="3D Model 1">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d2.jpeg" alt="3D Model 2">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d3.jpeg" alt="3D Model 3">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d4.jpeg" alt="3D Model 4">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d5.jpeg" alt="3D Model 5">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d6.jpeg" alt="3D Model 6">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d7.jpeg" alt="3D Model 7">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d8.jpeg" alt="3D Model 8">
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instagram Page 
+        <div id="instagram" class="page">
+            <div class="hero-text">
+                <h1>Instagram</h1>
+                <p style="max-width: 100%; margin-bottom: 3rem;">Follow my visual journey on Instagram for daily updates and behind-the-scenes content.</p>
+            </div>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <div class="placeholder-box">Post 1</div>
+                    <h3>Recent Post</h3>
+                    <p>Connect with me on Instagram for more content.</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="placeholder-box">Post 2</div>
+                    <h3>Recent Post</h3>
+                    <p>Connect with me on Instagram for more content.</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="placeholder-box">Post 3</div>
+                    <h3>Recent Post</h3>
+                    <p>Connect with me on Instagram for more content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <script>
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+    }
+        }
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
