@@ -145,8 +145,11 @@
         }
         .gallery-item .placeholder-box {
             width: 100%;
-            height: 200px; /* same as original placeholder */
+            height: 200px; 
             overflow: hidden; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .gallery-item .placeholder-box img {
@@ -191,15 +194,19 @@
             color: #666;
         }
         @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
             .gallery-item .placeholder-box {
-                height: 300px; /* taller for mobile */
+                height: auto;
+                aspect-ratio: 3 / 2;
             }
         }
-        @media (max-width: 568px) {
-            .gallery-item .placeholder-box {
-                height: 200px; /* taller for mobile */
-            }
-        }
+         
         .music-list {
             max-width: 800px;
             margin: 3rem auto 0;
@@ -211,7 +218,7 @@
         /* Music Placeholder */
         .placeholder-box-music {
             width: 100%;
-            max-width: 800px; /* limits how big the image gets */
+            max-width: 800px; 
             height: auto;
             background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
             display: flex;
@@ -224,7 +231,7 @@
         .placeholder-box-music img {
             width: 100%;
             height: auto;
-            object-fit: contain; /* keeps aspect ratio without stretching */
+            object-fit: contain; /* keeps aspect ratio without stretching hopefully */
             display: block;
         }
 
