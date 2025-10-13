@@ -179,7 +179,7 @@
             color: #cccccc;
             padding: 0 1.5rem 1.5rem 1.5rem;
         }
-
+        
         .placeholder-box {
             width: 100%;
             height: 200px;
@@ -190,7 +190,11 @@
             justify-content: center;
             color: #666;
         }
-
+        @media (max-width: 768px) {
+            .gallery-item .placeholder-box {
+                height: 300px; /* taller for mobile */
+            }
+        }
         .music-list {
             max-width: 800px;
             margin: 3rem auto 0;
@@ -381,14 +385,16 @@
                         If I had one dream, it would be living in an apartment with an amazing view of a city or mountains, while I create songs, projects, and art
                         that inspire others to explore their creativity and push boundaries.
                     </p>
+                    
                     <div class="about-more">
-                        <button class="read-more-btn" onclick="toggleAbout()">I'll add more here soon</button>
+                        <button class="read-more-btn" onclick="toggleAbout()">"I think you should add more to this website"</button>
                         <div id="more-text" class="more-text">
                             <p>
-                                Here's my extended monologue: I love exploring abandoned buildings and capturing their forgotten beauty. Photography allows me to reflect on time, decay, and memory. Beyond photography, I enjoy 3D modeling, creating in Roblox Studio, and experimenting with sound and music. Every project I make is an exploration of curiosity, creativity, and pushing boundaries. I aim to inspire others to find passion in the small, overlooked corners of life and express themselves through art and technology.
+                             I enjoy 3D modeling, creating in Roblox Studio, and experimenting with sound and music. Every project I make is an exploration of curiosity, creativity, and pushing boundaries. I aim to inspire others to find passion in the small, overlooked corners of life and express themselves through art and technology.
                             </p>
                         </div>
                     </div>
+
                     <div class="contact-links">
                         <a href="mailto:joshuawerescholar@gmail.com">jo*****@gmail.com (just click the nav)</a>
                         <a href="#">question everything</a>
@@ -439,6 +445,28 @@
                         Your browser does not support the audio element.
                     </audio>
                 </div>
+                <div class="track-item">
+                    <div class="track-cover">
+                        <div class="placeholder-box-music">
+                        <img src="assets/projectlogic2.png" alt="song project cover">
+                        </div>
+                    </div>
+                    <audio controls>
+                        <source src="assets/deep down; guitar, drums, riff, sadness5varispeed_demo_oct13.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="track-item">
+                    <div class="track-cover">
+                        <div class="placeholder-box-music">
+                        <img src="assets/projectlogic3.png" alt="song project cover">
+                        </div>
+                    </div>
+                    <audio controls>
+                        <source src="assets/guitar, drums, indie, sad(wave to earth kinda thing).mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
                 <!--
                 <div class="track-item">
                     <div class="track-cover">
@@ -479,46 +507,210 @@
                 <p>stuff i've made in roblox studio and blender.</p>
             </div>
             <div class="gallery">
-                
+            
                     <div class="gallery-item">
                         <div class="placeholder-box">
-                        <img src="assets/3d1.jpeg" alt="3D Model 1">
+                        <img src="assets/3d1.png" alt="3D Model 1">
                         </div>
                     </div>
                     <div class="gallery-item">
                         <div class="placeholder-box">
-                        <img src="assets/3d2.jpeg" alt="3D Model 2">
+                        <img src="assets/3d2.png" alt="3D Model 2">
                         </div>
                     </div>
                     <div class="gallery-item">
                         <div class="placeholder-box">
-                        <img src="assets/3d3.jpeg" alt="3D Model 3">
+                        <img src="assets/3d3.png" alt="3D Model 3">
                         </div>
                     </div>
                     <div class="gallery-item">
                         <div class="placeholder-box">
-                        <img src="assets/3d4.jpeg" alt="3D Model 4">
+                        <img src="assets/3d3.1.png" alt="3D Model 3.1">
                         </div>
                     </div>
                     <div class="gallery-item">
                         <div class="placeholder-box">
-                        <img src="assets/3d5.jpeg" alt="3D Model 5">
+                        <img src="assets/3d3.2.png" alt="3D Model 3.2">
                         </div>
                     </div>
                     <div class="gallery-item">
                         <div class="placeholder-box">
-                        <img src="assets/3d6.jpeg" alt="3D Model 6">
+                        <img src="assets/3d4.png" alt="3D Model 4">
                         </div>
                     </div>
                     <div class="gallery-item">
                         <div class="placeholder-box">
-                        <img src="assets/3d7.jpeg" alt="3D Model 7">
+                        <img src="assets/3d5.png" alt="3D Model 5">
                         </div>
                     </div>
                     <div class="gallery-item">
                         <div class="placeholder-box">
-                        <img src="assets/3d8.jpeg" alt="3D Model 8">
+                        <img src="assets/3d6.png" alt="3D Model 6">
                         </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d7.png" alt="3D Model 7">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d8.png" alt="3D Model 8">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d9.png" alt="3D Model 9">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d10.png" alt="3D Model 10">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d11.png" alt="3D Model 11">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d12.png" alt="3D Model 12">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d13.png" alt="3D Model 13">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d14.png" alt="3D Model 14">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d15.png" alt="3D Model 15">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d16.png" alt="3D Model 16">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d17.jpeg" alt="3D Model 17">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d17.1.png" alt="3D Model 17.1">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d18.jpeg" alt="3D Model 18">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d19.jpeg" alt="3D Model 19">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d20.jpeg" alt="3D Model 20">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/3d21.jpeg" alt="3D Model 21">
+                        </div>
+                    </div>
+                    <!--break-->
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/museum.jpeg" alt="3D Model 31">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/museum2.jpeg" alt="3D Model 32">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/museum3.png" alt="3D Model 33">
+                        </div>
+                    </div>
+                     <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/dessert.jpeg" alt="3D Model 29">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/dessert2.jpeg" alt="3D Model 30">
+                        </div>
+                    </div>
+                    
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/des.jpeg" alt="3D Model 20">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/des2.jpeg" alt="3D Model 20">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/acro.jpeg" alt="3D Model 22">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/acro2.jpeg" alt="3D Model 23">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/acro3.jpeg" alt="3D Model 24">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/bar.png" alt="3D Model 25">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/bar2.png" alt="3D Model 26">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/bar3.png" alt="3D Model 27">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/bar4.png" alt="3D Model 28">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/dessert3.jpeg" alt="3D Model 27">
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="placeholder-box">
+                        <img src="assets/dessert4.jpeg" alt="3D Model 28">
+                        </div>
+                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -559,7 +751,7 @@
             const navLinks = document.querySelector('.nav-links');
             if (navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
-    }
+            }
         }
         function toggleMobileMenu() {
             const navLinks = document.querySelector('.nav-links');
