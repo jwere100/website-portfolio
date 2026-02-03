@@ -49,7 +49,7 @@
         .nav-links a {
             color: #ffffff;
             text-decoration: none;
-            font-size: 1.9rem;
+            font-size: 1.8rem;
             font-weight: 900;
             transition: opacity 0.3s;
             /*text-transform: lowercase;*/
@@ -356,6 +356,100 @@
             background: #fff;
             color: #000;
         }
+        /* ---------- CODING SECTION ---------- */
+        .coding-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 2.5rem auto 0;
+        }
+
+        .project-card {
+            display: block;              /* anchor becomes a block */
+            text-decoration: none;
+            color: inherit;
+            background-color: #1a1a1a;
+            border: 1px solid rgba(255,255,255,0.08);
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            border-color: rgba(255, 255, 255, 0.008);
+        }
+
+        .project-thumb {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.667), #1a1a1a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-topline {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+
+        .project-date {
+            font-size: 1rem;
+            color: #bdbdbd;
+            white-space: nowrap;
+        }
+
+        .project-desc {
+            font-size: 1.1rem;
+            color: #cccccc;
+            margin-top: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .project-tag {
+            font-size: 0.95rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.12);
+            color: #e6e6e6;
+            background: rgba(255,255,255,0.04);
+        }
+
+        /* Mobile tweaks */
+        @media (max-width: 768px) {
+            .project-thumb {
+                height: auto;
+                aspect-ratio: 3 / 2;
+            }
+        }
+
 
         
 
@@ -370,13 +464,13 @@
         </div>
 
         <ul class="nav-links">
-            <li><a href="#" onclick="showPage('3d')">3D</a></li>
-            <li><a href="#" onclick="showPage('music')">Sound</a></li>
-            <li><a href="https://www.linkedin.com/in/joshua-were-500abb294/" class="icon-link">
-                Linkedin
-            </a></li>
+            <li><a href="#" onclick="showPage('3d')">models</a></li>
+            <li><a href="#" onclick="showPage('coding')">coding</a></li>
+            <li><a href="#" onclick="showPage('music')">music</a></li>
+            <li><a href="https://github.com/jwere100" class="icon-link">github</a></li>
+            <li><a href="https://www.linkedin.com/in/joshua-were-500abb294/" class="icon-link">linkedin</a></li>
             <li><a href="mailto:joshuawerescholar@email.com" class="icon-link" onclick="event.stopPropagation()">
-            Mail</a></li>
+            mail</a></li>
 
             <!--mobile-->
             <li class="close-btn" onclick="toggleMobileMenu()">&#10005;</li>
@@ -388,18 +482,21 @@
         <div id="home" class="page active">
             <div class="hero">
                 <div class="hero-text">
-                    <h1>About me</h1>
-                    <p>I’m Joshua Were, a Kenyan student at Columbia University passionate about creativity, technology, and sustainability. 
+                    <h1>About Me</h1>
+                    <p>I’m Joshua Were, a Kenyan-American mathematics/computer science student at Columbia University passionate about engineering, creativity, technology, and sustainability. 
                         I love blending technical skills with artistic vision to bring ideas to life in ways that are both impactful and authentic. 
-                        I conduct sustainable research at Columbia and NASA, exploring how computational modeling and machine learning can help tackle climate-driven challenges like wildfires and flooding. 
-                        I’ve also gained hands-on experience in advanced manufacturing, creating and analyzing polymers while applying Python and machine learning to study trends. Creatively, I work across video and music production, 3D design, computational media, and digital content creation.
+                    </p>
+                    <p>
+                        I conducted sustainable research at Columbia and NASA, exploring how computational modeling and machine learning can help tackle climate-driven challenges like wildfires and flooding. 
+                        Creatively, I work across video and music production, 3D design, computational media, and digital content creation.
                         I fell in love with making during the pandemic through game development on Roblox, and now I lead larger projects, including Saving Creative Lives, which has exposed over 200 students in underserved communities to programming, 3D modeling, music, photography, and STEM. 
-                        If I had one dream, it would be living in an apartment with an amazing view of a city or mountains, while I create songs, projects, and art
-                        that inspire others to explore their creativity and push boundaries.
+                    <p>
+                        Currently, I work in C/C++, building real-time systems, audio tools, and machine-learning driven creative applications.
+                        These are projects that let me merge engineering with musical imagination and bring innovative ideas into the world.
                     </p>
                     
                     <div class="about-more">
-                        <button class="read-more-btn" onclick="toggleAbout()">"I think you should add more to this website"</button>
+                        <button class="read-more-btn" onclick="toggleAbout()">"I think you should add more to this website button"</button>
                         <div id="more-text" class="more-text">
                             <p>
                              I enjoy 3D modeling, creating in Roblox Studio, and experimenting with sound and music. Every project I make is an exploration of curiosity, creativity, and pushing boundaries. I aim to inspire others to find passion in the small, overlooked corners of life and express themselves through art and technology.
@@ -409,7 +506,7 @@
 
                     <div class="contact-links">
                         <a href="mailto:joshuawerescholar@gmail.com">jo*****@gmail.com (just click the nav)</a>
-                        <a href="#">question everything</a>
+                        <a href="#">press the hamburger for links</a>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -511,6 +608,63 @@
                 -->
             </div>
         </div>
+        <!-- Coding Page -->
+<div id="coding" class="page">
+    <div class="hero-text">
+        <h1>code i've built</h1>
+        <p>This page is under construction.</p>
+    </div>
+
+    <div class="coding-grid">
+        <!-- Project 1 -->
+        <a class="project-card" href="https://github.com/jwere100" target="_blank" rel="noopener noreferrer">
+            <div class="project-thumb">
+                <!--<img src="assets/" alt="thumbnail" loading="lazy"> -->
+            </div>
+            <div class="project-body">
+                <div class="project-topline">
+                    <div class="project-title">fix your mix plugin (audio enhancement tool)</div>
+                    <div class="project-date">2026</div>
+                </div>
+                <div class="project-desc">
+                    Intro level artists like me can finally make their mix sound good
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">C++</span>
+                    <span class="project-tag">PyTorch</span>
+                    <span class="project-tag">Juce</span>
+                    <span class="project-tag">Cmake</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Project 2 -->
+        <a class="project-card" href="https://github.com/jwere100" target="_blank" rel="noopener noreferrer">
+            <div class="project-thumb">
+                <!--<img src="assets/varaentropy.png" alt="Audio plugin project thumbnail" loading="lazy">-->
+            </div>
+            <div class="project-body">
+                <div class="project-topline">
+                    <div class="project-title">GAN implementation with ERA5 data</div>
+                    <div class="project-date">2026</div>
+                </div>
+                <div class="project-desc">
+                    Comign soon
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">PyTorch</span>
+                    <span class="project-tag">Python</span>
+                    <span class="project-tag">Colab</span>
+                    <span class="project-tag">Matplotlib</span>
+                </div>
+            </div>
+        </a>
+
+        
+
+        <!-- Add more cards by copying one of these blocks -->
+    </div>
+</div>
 
         <!-- 3D/Roblox Page -->
         <div id="3d" class="page">
