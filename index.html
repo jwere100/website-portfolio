@@ -448,12 +448,21 @@
                 height: auto;
                 aspect-ratio: 3 / 2;
             }
+            .coding-grid,
+            .gallery {
+                max-width: 100%;
+                margin: 0 auto;
+                padding: 0 1rem;
+            }
         }
 
+        /* individual colors */
+        .pytorch { background-color: rgba(238, 76, 44, 0.22); border-color: rgba(238, 76, 44, 0.35); color: rgba(255,255,255,0.90); }
+        .cpp     { background-color: rgba(0, 89, 156, 0.22);  border-color: rgba(0, 89, 156, 0.35);  color: rgba(255,255,255,0.90); }
+        .juce    { background-color: rgba(109, 219, 163, 0.18); border-color: rgba(109, 219, 163, 0.32); color: rgba(255,255,255,0.90); }
+        .cmake   { background-color: rgba(6, 79, 140, 0.22);  border-color: rgba(6, 79, 140, 0.35);  color: rgba(255,255,255,0.90); }
 
-        
-
-
+    
     </style>
 </head>
 <body>
@@ -608,10 +617,12 @@
                 -->
             </div>
         </div>
+
+
         <!-- Coding Page -->
 <div id="coding" class="page">
     <div class="hero-text">
-        <h1>code i've built</h1>
+        <h1>project snippets</h1>
         <p>This page is under construction.</p>
     </div>
 
@@ -619,26 +630,43 @@
         <!-- Project 1 -->
         <a class="project-card" href="https://github.com/jwere100" target="_blank" rel="noopener noreferrer">
             <div class="project-thumb">
-                <!--<img src="assets/" alt="thumbnail" loading="lazy"> -->
+                <img src="assets/gaintrimdemo.png" alt="thumbnail" loading="lazy">
             </div>
             <div class="project-body">
                 <div class="project-topline">
                     <div class="project-title">fix your mix plugin (audio enhancement tool)</div>
-                    <div class="project-date">2026</div>
+                    <div class="project-date">FEB 14 2026</div>
                 </div>
                 <div class="project-desc">
                     Intro level artists like me can finally make their mix sound good
                 </div>
                 <div class="project-tags">
-                    <span class="project-tag">C++</span>
-                    <span class="project-tag">PyTorch</span>
-                    <span class="project-tag">Juce</span>
-                    <span class="project-tag">Cmake</span>
+                    <span class="project-tag pytorch">PyTorch</span>
+                    <span class="project-tag cpp">C++</span>
+                    <span class="project-tag juce">Juce</span>
+                    <span class="project-tag cmake">CMake</span>
                 </div>
             </div>
         </a>
-
         <!-- Project 2 -->
+        <a class="project-card" href="https://github.com/jwere100" target="_blank" rel="noopener noreferrer">
+            <div class="project-thumb">
+                <!--<img src="assets/varaentropy.png" alt="Audio plugin project thumbnail" loading="lazy">-->
+            </div>
+            <div class="project-body">
+                <div class="project-topline">
+                    <div class="project-title">"The Completeness Project": Machine Learning Portfolio</div>
+                    <div class="project-date">2026</div>
+                </div>
+                <div class="project-desc">
+                    Mastering my understanding of machine learning
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag pytorch">PyTorch</span>
+                </div>
+            </div>
+        </a>
+        <!-- Project 3 -->
         <a class="project-card" href="https://github.com/jwere100" target="_blank" rel="noopener noreferrer">
             <div class="project-thumb">
                 <!--<img src="assets/varaentropy.png" alt="Audio plugin project thumbnail" loading="lazy">-->
@@ -652,15 +680,14 @@
                     Comign soon
                 </div>
                 <div class="project-tags">
-                    <span class="project-tag">PyTorch</span>
-                    <span class="project-tag">Python</span>
-                    <span class="project-tag">Colab</span>
-                    <span class="project-tag">Matplotlib</span>
+                    <span class="project-tag pytorch">PyTorch</span>
                 </div>
             </div>
         </a>
 
+
         
+
 
         <!-- Add more cards by copying one of these blocks -->
     </div>
