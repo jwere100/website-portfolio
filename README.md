@@ -1,2 +1,1 @@
-personal website
-joshuaewere.com
+[personal website](https://joshuawere.com)
